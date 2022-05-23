@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace MovieDB.Shared
 {
-    internal class User
+    public class User
     {
        
-        public string UserName { get; set; }
+        public string Username { get; set; } = string.Empty;
 
-        public string Password { get; set; } 
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
 
 
 

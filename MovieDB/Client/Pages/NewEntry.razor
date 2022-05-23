@@ -1,0 +1,87 @@
+﻿@page "/newentry"
+@page "/newentry/{id:int}"
+@inject IMovieService MovieService
+
+@if(Id== null)
+{
+   <PageTitle>Create New Movie</PageTitle>
+    <h3>Create a new Movie</h3>
+
+}
+else
+{
+    <h3>Edit @movie.Title</h3>
+   
+}
+
+<EditForm Model="movie" OnSubmit="HandleSubmit">
+    <div>
+        <label for="title">Title</label>
+        <InputText id="title" @bind-Value="movie.Title" class="form-control"></InputText>
+
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <InputText id="description" @bind-Value="movie.Description" class="form-control"></InputText>
+
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary"> @btnText</button>
+    <button type="submit" class="btn btn-danger" @onclick="DeleteMovie">Delete Movie</button>
+
+
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int? Id{ get; set; }
+
+    string btnText = string.Empty;
+
+    Movie movie = new Movie();
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = Id == null ? "Save New Movie" : "Update Entry";
+
+    }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id == null)
+        {
+
+
+
+        }
+        else
+        {
+            movie = await MovieService.GetSingleMovie((int)Id);
+
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        if(Id == null)
+        {
+            await MovieService.CreateMovie(movie);
+
+        }else
+        {
+            await MovieService.UpdateMovie(movie);
+
+        }
+
+    }
+
+
+    async Task DeleteMovie()
+    {
+        await MovieService.DeleteMovie(movie.Id);
+    }
+
+
+}

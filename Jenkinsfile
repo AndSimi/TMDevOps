@@ -3,8 +3,14 @@ pipeline{
     triggers{
         pollSCM("*/5 * * * *")
     }
+    parameters{
+        string(name: "Person", defaultValue: "GitHub", description: "Who are you?")
+    }
 
     stages{
+        stage("Startup"){
+            sh "echo 'Build started by: ${params.Person} '"
+        }
         stage("Build"){
             parallel{      
                 stage("Build API"){

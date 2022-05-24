@@ -7,8 +7,11 @@ pipeline{
     stages{
         stage("Build API"){
             steps{
-                sh "echo 'We arer building the API'"
-                sh "dotnet build MovieDB.sln"
+                sh "echo 'We are building the API'"
+                dir("MovieDB\Server"){
+                    sh "dotnet build MovieDB.Server.csproj"
+                }
+                
             }
         }
         stage("Build frontend"){

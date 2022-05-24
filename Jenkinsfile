@@ -33,10 +33,15 @@ pipeline{
                 }
             }
         }
-        
         post{
-            changed{
-                sh"echo 'Pipeline state has changed'"
+            always{
+                echo "====++++always++++===="
+            }
+            success{
+                echo "====++++only when successful++++===="
+            }
+            failure{
+                echo "====++++only when failed++++===="
             }
         }
     }

@@ -9,7 +9,10 @@ pipeline{
 
     stages{
         stage("Startup"){
-            sh "echo 'Build started by: ${params.Person} '"
+            steps{
+                sh "echo 'Build started by: ${params.Person}'"
+            }
+            
         }
         stage("Build"){
             parallel{      

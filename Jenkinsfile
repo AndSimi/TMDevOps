@@ -33,10 +33,10 @@ pipeline{
                 }
             }
         }
-        post {
+    }
+    post {
             changed {
                 sh "echo 'Pipeline finished'"
             }
         }
-    }
 }

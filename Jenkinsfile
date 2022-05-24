@@ -11,7 +11,17 @@ pipeline{
                 dir("MovieDB/Server"){
                     sh "dotnet build MovieDB.Server.csproj"
                 }
-                
+            }
+            post{
+                always{
+                    sh"echo 'Building API finished'"
+                }
+                success{
+                    sh"echo 'Building API successful'"
+                }
+                failure{
+                    sh"echo 'Building API failed'"
+                }
             }
         }
         stage("Build frontend"){
@@ -19,6 +29,10 @@ pipeline{
                 sh "echo 'We are building the frontend'"
             }
         }
+        post{
+            always{
+                sh"echo 'Pipeline finished'"
+            }
+        }
     }
-
 }

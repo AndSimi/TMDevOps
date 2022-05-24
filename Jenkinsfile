@@ -8,7 +8,7 @@ pipeline{
         stage("Build API"){
             steps{
                 sh "echo 'We are building the API'"
-                dir("MovieDB\Server"){
+                dir("MovieDB/Server"){
                     sh "dotnet build MovieDB.Server.csproj"
                 }
                 

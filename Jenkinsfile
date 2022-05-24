@@ -1,13 +1,19 @@
 pipeline{
     agent any
     triggers{
-        pollSCM("* * * * *")
+        pollSCM("*/5 * * * *")
     }
 
     stages{
-        stage("Build"){
+        stage("Build API"){
             steps{
-                echo "Yay we are running :D"
+                sh "echo 'We arer building the API'"
+                sh "dotnet build MovieDB.sln"
+            }
+        }
+        stage("Build frontend"){
+            steps{
+                sh "echo 'We are building the frontend'"
             }
         }
     }

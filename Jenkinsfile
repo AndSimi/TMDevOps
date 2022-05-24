@@ -31,9 +31,9 @@ pipeline{
                         sh "echo 'We are building the frontend'"
                     }
                 }
-
             }
         }
+        
         post{
             changed{
                 sh"echo 'Pipeline state has changed'"

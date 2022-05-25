@@ -11,6 +11,9 @@ pipeline{
         stage("Startup"){
             steps{
                 sh "echo 'Build started by: ${params.Person}'"
+                dir("MovieDB.Server.Test"){
+                    sh "rm -rf TestResults"
+                }
             }
             
         }
@@ -50,7 +53,13 @@ pipeline{
             steps(){
                 sh "echo 'We are unit testing the API'"
                 dir("MovieDB.Server.Test"){
-                    sh "dotnet test"
+                    sh "dotnet add package coverlet.collector"
+                    sh "dotnet test --collect:"XPLat Code Coverage""
+                }
+            }
+            post{
+                success{
+                    archiveArtifacts "MovieDB.Server.Test/TestResults/*/coverage.cobertura.xml"
                 }
             }
         }

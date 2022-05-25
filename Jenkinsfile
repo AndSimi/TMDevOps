@@ -22,6 +22,9 @@ pipeline{
                         dir("MovieDB/Server"){
                             sh "dotnet build MovieDB.Server.csproj"
                         }
+                        dir("MovieDB/Shared"){
+                            sh "dotnet build MovieDB.Shared.csproj"
+                        }
                     }
                     post{
                         always{

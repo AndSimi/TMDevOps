@@ -59,7 +59,7 @@ pipeline{
             }
             post{
                 success{
-                    publishCoverage adapters: [coberturaAdapter(path: "MovieDB.Server.Test/TestResults/*/coverage.cobertura.xml")]
+                    publishCoverage adapters: [cobertura('MovieDB.Server.Test/TestResults/*/coverage.cobertura.xml')], sourceFileResolver: sourceFiles('NEVER_STORE')
                     archiveArtifacts "MovieDB.Server.Test/TestResults/*/coverage.cobertura.xml"
                 }
             }

@@ -42,6 +42,23 @@ pipeline{
                 }
             }
         }
+
+        stage("Test"){
+            steps(){
+                sh "echo 'We are unit testing the API'"
+                dir("MovieDB.Server.Test"){
+                    sh "dotnet build MovieDB.Server.Test.csproj"
+                }
+                post{
+                    success{
+                        sh "echo'Testing was successful'"
+                    }
+                }
+            }
+
+        }
+
+
     }
     post {
             changed {

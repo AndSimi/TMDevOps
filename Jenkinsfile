@@ -59,6 +59,7 @@ pipeline{
             }
             post{
                 success{
+                    publishCoverage adapters: [coberturaAdapter(path:"MovieDB.Server.Test/TestResults/*/coverage.cobertura.xml")]
                     archiveArtifacts "MovieDB.Server.Test/TestResults/*/coverage.cobertura.xml"
                 }
             }

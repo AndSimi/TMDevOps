@@ -52,13 +52,14 @@ pipeline{
                 dir("MovieDB.Server.Test"){
                     sh "dotnet build MovieDB.Server.Test.csproj"
                 }
-                post{
+
+                
+            }
+            post{
                     success{
                         sh "echo'Testing was successful'"
                     }
                 }
-            }
-
         }
 
 

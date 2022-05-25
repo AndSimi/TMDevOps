@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieDB.Client", "MovieDB\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieDB.Shared", "MovieDB\Shared\MovieDB.Shared.csproj", "{438E2380-E510-4AAC-B60B-22CF523F181D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDB.Server.Test", "MovieDB.Server.Test\MovieDB.Server.Test.csproj", "{7824B076-4568-4E9D-83FB-07602F291279}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{438E2380-E510-4AAC-B60B-22CF523F181D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438E2380-E510-4AAC-B60B-22CF523F181D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438E2380-E510-4AAC-B60B-22CF523F181D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7824B076-4568-4E9D-83FB-07602F291279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7824B076-4568-4E9D-83FB-07602F291279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7824B076-4568-4E9D-83FB-07602F291279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7824B076-4568-4E9D-83FB-07602F291279}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

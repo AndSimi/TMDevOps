@@ -54,7 +54,7 @@ pipeline{
                 sh "echo 'We are unit testing the API'"
                 dir("MovieDB.Server.Test"){
                     sh "dotnet add package coverlet.collector"
-                    sh "dotnet test --collect:"XPLat Code Coverage""
+                    sh "dotnet test --collect:""XPLat Code Coverage""
                 }
             }
             post{

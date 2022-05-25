@@ -50,7 +50,7 @@ pipeline{
             steps(){
                 sh "echo 'We are unit testing the API'"
                 dir("MovieDB.Server.Test"){
-                    sh "dotnet build MovieDB.Server.Test.csproj"
+                    sh "dotnet test"
                 }
             }
         }

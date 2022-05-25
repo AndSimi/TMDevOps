@@ -44,6 +44,9 @@ pipeline{
                 stage("Build frontend"){
                     steps{
                         sh "echo 'We are building the frontend'"
+                        dir("MovieDB/Client"){
+                            sh "dotnet build MovieDB.Client.csproj"
+                        }
                     }
                 }
             }

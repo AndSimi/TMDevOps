@@ -101,10 +101,89 @@ namespace MovieDB.Server.Test
             var okResult = result.Result as NotFoundObjectResult;
 
             //Assert
+            Assert.IsType<NotFoundObjectResult>(okResult);
+
+        }
+
+        [Fact]
+        public async void AddMovieTest()
+        {
+            //Arrange
+            Movie newMovie = new Movie { Id = 11, Description = "Awesome movie 2", Title = "Awesome movie2" };
+            var dbContext = await GetDatabaseContext();
+            var movieController = new MovieController(dbContext);
+
+            //Act
+            var  result = await movieController.AddMovie(newMovie);
+            var okResult = result.Result as OkObjectResult;
+
+            //Assert
+            result.Should().NotBeNull();
+            Assert.IsType<OkObjectResult>(okResult);
+
+        }
+
+
+        [Fact]
+
+        public async void UpdateMovieTest()
+        {
+            //Arrange
+            Movie newMovie = new Movie {Description = "Awesome movie 2", Title = "Awesome movie2" };
+            var movieID = 4;
+            var dbContext = await GetDatabaseContext();
+            var movieController = new MovieController(dbContext);
+
+            //Act
+            var result = await movieController.UpdateMovie(newMovie, movieID);
+            var okResult = result.Result as OkObjectResult;
+
+            //Assert
+            result.Should().NotBeNull();
+            Assert.IsType<OkObjectResult>(okResult);
+
+        }
+
+
+
+        [Fact]
+
+        public async void UpdateMovieNotFoundTest()
+        {
+            //Arrange
+            Movie newMovie = new Movie { Description = "Awesome movie 2", Title = "Awesome movie2" };
+            var movieID = 14;
+            var dbContext = await GetDatabaseContext();
+            var movieController = new MovieController(dbContext);
+
+            //Act
+            var result = await movieController.UpdateMovie(newMovie, movieID);
+            var okResult = result.Result as NotFoundObjectResult;
+
+            //Assert
             result.Should().NotBeNull();
             Assert.IsType<NotFoundObjectResult>(okResult);
 
+        }
 
+
+        [Fact]
+
+        public async void DeleteMovieTest()
+        {
+            //Arrange
+           
+            var movieID = 4;
+            var dbContext = await GetDatabaseContext();
+            var movieController = new MovieController(dbContext);
+
+            //Act
+            var result = await movieController.DeleteMovie(movieID);
+            var okResult = result.Result as OkObjectResult;
+
+            //Assert
+            result.Should().NotBeNull();
+            Assert.IsType<OkObjectResult>(okResult);
 
         }
 

@@ -69,10 +69,46 @@ pipeline{
         }
 
 
-    }
-    post {
-            changed {
-                sh "echo 'Pipeline finished'"
+
+        stage("Deploy"){
+            parallel{
+                stage("Frontend"){
+                    steps{
+                        dir("MovieDB/Client/wwwroot"){
+                            sh "docker build -t movie-web ."
+                            sh "docker run --name movie-web-container -d -p 8090:80 movie-web"
+                        }
+                    }
+                }
+                stage("API"){
+                    steps{
+                        dir("MovieDB/Server"){
+                            sh "docker build -t movie-api ."
+                            sh "docker run --name movie-api-container -d -p 8091:80 movie-api"
+                        }
+                    }
+                    
+
+                }
+                stage("Database"){
+                    steps{
+                        sh "docker run --name movie-db-container -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrongP@ssword' -p 8092:1433 -d mcr.microsoft.com/mssql/server"
+
+                    }
+                }
+
+
+
             }
         }
+    }
+
+    post{
+        changed{
+            sh "echo 'Pipeline finished'"
+        }
+    }
+
+
+
 }

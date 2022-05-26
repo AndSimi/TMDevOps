@@ -21,7 +21,11 @@ pipeline{
             parallel{      
                 stage("Build API"){
                     when{
-                        changedset "MovieDB/Server/**"
+                        anyOf {
+                            changeset "MovieDB/Server/**"
+                            changeset "MovieDB/Shared/**"
+                            changeset "MovieDB/Client/**"
+                }
                     }
                     steps{
                         sh "echo 'We are building the API'"

@@ -18,6 +18,8 @@ services:
       - "${API_PORT}:80"
     depends_on:
       - "db"
+    environment:
+      - DB_CONNECTION_STRING=Server=${DB_CONT_NAME},1433;Initial Catalog=moivedb;User ID=SA;Password=yourStrongP@ssword;MultipleActiveResultSets=True;
   db:
     image: "mcr.microsoft.com/mssql/server"
     container_name: "${DB_CONT_NAME}"

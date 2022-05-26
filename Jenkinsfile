@@ -31,12 +31,13 @@ pipeline{
                         sh "echo 'We are building the API'"
                         dir("MovieDB/Server"){
                             sh "dotnet build --configuration Release"
-                            sh "docker-compose build api"
                         }
+                        sh "docker-compose --env-file config/Test.env build api"
+
                         dir("MovieDB/Shared"){
                             sh "dotnet build --configuration Release"
-                            sh "docker-compose build shared"
                         }
+                        sh "docker-compose --env-file config/Test.env build shared"
                     }
                     post{
                         always{
@@ -55,8 +56,8 @@ pipeline{
                         sh "echo 'We are building the frontend'"
                         dir("MovieDB/Client"){
                             sh "dotnet build --configuration Release"
-                            sh "docker-compose build client"
                         }
+                        sh "docker-compose --env-file config/Test.env build client"
                     }
                 }
             }
@@ -90,7 +91,7 @@ pipeline{
             steps{
                 script{
                     try{
-                        sh "docker-compose down"
+                        sh "docker-compose --env-file config/Test.env down"
                     }
                     finally{}
                 }
@@ -101,7 +102,7 @@ pipeline{
 
         stage("Deploy"){
             steps{
-                sh "docker-compose up -d --build"
+                sh "docker-compose --env-file config/Test.env up -d --build"
             }
             
         }

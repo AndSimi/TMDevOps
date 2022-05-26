@@ -68,6 +68,18 @@ pipeline{
             }
         }
 
+        stage("Clean"){
+            steps{
+                script{
+                    try{
+                        sh "docker rm -f moive-web-container"
+                        sh "docker rm -f movie-api-container"
+                        sh "docker rm -f movie-db-container"
+                    }
+                }
+            }
+        }
+
 
 
         stage("Deploy"){

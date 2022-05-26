@@ -110,7 +110,7 @@ pipeline{
         stage("Load Test"){
             steps{
                 echo "Performing a load test"
-                sh "k6 run MOVIEDB.perf.test/load-test.js"
+                sh "k6 run MovieDB.perf.test/load-test.js"
             }
         }
 

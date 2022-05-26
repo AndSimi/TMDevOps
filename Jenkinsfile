@@ -72,7 +72,7 @@ pipeline{
             steps{
                 script{
                     try{
-                        sh "docker rm -f moive-web-container"
+                        sh "docker rm -f movie-web-container"
                         sh "docker rm -f movie-api-container"
                         sh "docker rm -f movie-db-container"
                     }

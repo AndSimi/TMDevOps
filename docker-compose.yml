@@ -24,3 +24,11 @@ services:
       - SA_PASSWORD=yourStrongP@ssword
     ports:
       - "8092:1433"
+  shared:
+    build:
+      context: "MovieDB/Shared"
+    container_name: "movie-shared-container"
+    ports:
+      - "8093:80"
+    depends_on:
+      - "api"

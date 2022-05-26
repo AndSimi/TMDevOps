@@ -76,6 +76,7 @@ pipeline{
                         sh "docker rm -f movie-api-container"
                         sh "docker rm -f movie-db-container"
                     }
+                    finally{}
                 }
             }
         }

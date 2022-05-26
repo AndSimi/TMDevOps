@@ -6,12 +6,16 @@ services:
     container_name: "movie-web-container"
     ports:
       - "8090:80"
+    depends_on:
+      - "api"
   api:
     build: 
       context: "MovieDB/Server"
     container_name: "movie-api-container"
     ports:
       - "8091:80"
+    depends_on:
+      - "db"
   db:
     image: "mcr.microsoft.com/mssql/server"
     container_name: "movie-db-container"

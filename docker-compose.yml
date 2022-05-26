@@ -25,7 +25,7 @@ services:
     ports:
       - "8092:1433"
     volumes:
-      -movieData:/var/opt/mssql:rw
+      - movieData:/var/opt/mssql:rw
   shared:
     build:
       context: "MovieDB/Shared"

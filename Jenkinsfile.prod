@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    parameters {
+        run filter: 'SUCCESSFUL', name: 'PROMOTED_BUILD', projectName: 'MovieDBPipeline'
+    }
     stages{
         stage("Deploy to production"){
             steps{

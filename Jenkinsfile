@@ -106,7 +106,17 @@ pipeline{
             }
             
         }
+
+        stage("Push images to registry"){
+            steps{
+                sh "docker-compose --env-file config/Test.env push"
+            }
+        }
+
+
     }
+
+
 
     post{
         changed{

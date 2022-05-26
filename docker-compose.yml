@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  client:
+    build: 
+      context: "MovieDB/Client/wwwroot"
+    container_name: "movie-web-container"
+    ports:
+      - "8090:80"
+  api:
+    build: 
+      context: "MovieDB/Server"
+    container_name: "movie-api-container"
+    ports:
+      - "8091:80"
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    container_name: "movie-db-container"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrongP@ssword
+    ports:
+      -"8092:1433"

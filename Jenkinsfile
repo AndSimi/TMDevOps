@@ -72,9 +72,7 @@ pipeline{
             steps{
                 script{
                     try{
-                        sh "docker rm -f movie-web-container"
-                        sh "docker rm -f movie-api-container"
-                        sh "docker rm -f movie-db-container"
+                        sh "docker-compose down"
                     }
                     finally{}
                 }
@@ -84,35 +82,10 @@ pipeline{
 
 
         stage("Deploy"){
-            parallel{
-                stage("Frontend"){
-                    steps{
-                        dir("MovieDB/Client/wwwroot"){
-                            sh "docker build -t movie-web ."
-                            sh "docker run --name movie-web-container -d -p 8090:80 movie-web"
-                        }
-                    }
-                }
-                stage("API"){
-                    steps{
-                        dir("MovieDB/Server"){
-                            sh "docker build -t movie-api ."
-                            sh "docker run --name movie-api-container -d -p 8091:80 movie-api"
-                        }
-                    }
-                    
-
-                }
-                stage("Database"){
-                    steps{
-                        sh "docker run --name movie-db-container -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrongP@ssword' -p 8092:1433 -d mcr.microsoft.com/mssql/server"
-
-                    }
-                }
-
-
-
+            steps{
+                sh "docker-compose up -d"
             }
+            
         }
     }
 
@@ -121,6 +94,8 @@ pipeline{
             sh "echo 'Pipeline finished'"
         }
     }
+
+
 
 
 

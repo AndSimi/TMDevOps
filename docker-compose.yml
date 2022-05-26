@@ -3,7 +3,7 @@ services:
   client:
     build: 
       context: "MovieDB/Client/wwwroot"
-    image: "localhost:7002/movie-client"
+    image: "localhost:7002/movie-client:${IMAGE_TAG}"
     container_name: "${WEB_CONT_NAME}"
     ports:
       - "${WEB_PORT}:80"
@@ -12,7 +12,7 @@ services:
   api:
     build: 
       context: "MovieDB/Server"
-    image: "localhost:7002/movie-api"
+    image: "localhost:7002/movie-api:${IMAGE_TAG}"
     container_name: "${API_CONT_NAME}"
     ports:
       - "${API_PORT}:80"
@@ -31,7 +31,7 @@ services:
   shared:
     build:
       context: "MovieDB/Shared"
-    image: "localhost:7002/movie-shared"
+    image: "localhost:7002/movie-shared:${IMAGE_TAG}"
     container_name: "${SHARED_CONT_NAME}"
     ports:
       - "${SHARED_PORT}:80"

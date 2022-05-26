@@ -25,7 +25,7 @@ pipeline{
                             changeset "MovieDB/Server/**"
                             changeset "MovieDB/Shared/**"
                             changeset "MovieDB/Client/**"
-                }
+                        }
                     }
                     steps{
                         sh "echo 'We are building the API'"
@@ -49,6 +49,13 @@ pipeline{
                     }
                 }           
                 stage("Build frontend"){
+                    when{
+                        anyOf {
+                            changeset "MovieDB/Server/**"
+                            changeset "MovieDB/Shared/**"
+                            changeset "MovieDB/Client/**"
+                        }
+                    }
                     steps{
                         sh "echo 'We are building the frontend'"
                         dir("MovieDB/Client"){

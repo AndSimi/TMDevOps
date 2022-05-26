@@ -1,4 +1,4 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY ./MovieDB/Server/bin/Release/net6.0/ /app/
+WORKDIR /App
+COPY Server/bin/Release/net6.0/ /App/
 ENTRYPOINT ["dotnet", MovieDB.Server.dll]

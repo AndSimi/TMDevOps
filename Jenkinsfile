@@ -20,6 +20,9 @@ pipeline{
         stage("Build"){
             parallel{      
                 stage("Build API"){
+                    when{
+                        changedset "MovieDB/Server/**"
+                    }
                     steps{
                         sh "echo 'We are building the API'"
                         dir("MovieDB/Server"){

@@ -31,9 +31,11 @@ pipeline{
                         sh "echo 'We are building the API'"
                         dir("MovieDB/Server"){
                             sh "dotnet build --configuration Release"
+                            sh "docker-compose build api"
                         }
                         dir("MovieDB/Shared"){
                             sh "dotnet build --configuration Release"
+                            sh "docker-compose build shared"
                         }
                     }
                     post{
@@ -60,6 +62,7 @@ pipeline{
                         sh "echo 'We are building the frontend'"
                         dir("MovieDB/Client"){
                             sh "dotnet build --configuration Release"
+                            sh "docker-compose build client"
                         }
                     }
                 }
@@ -67,6 +70,14 @@ pipeline{
         }
 
         stage("Test"){
+            when{
+                anyOf {
+                    changeset "MovieDB/Server/**"
+                    changeset "MovieDB/Shared/**"
+                }
+                
+            }
+
             steps(){
                 sh "echo 'We are unit testing the API'"
                 dir("MovieDB.Server.Test"){

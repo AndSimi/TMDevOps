@@ -23,10 +23,10 @@ pipeline{
                     steps{
                         sh "echo 'We are building the API'"
                         dir("MovieDB/Server"){
-                            sh "dotnet build MovieDB.Server.csproj"
+                            sh "dotnet build --configuration Release"
                         }
                         dir("MovieDB/Shared"){
-                            sh "dotnet build MovieDB.Shared.csproj"
+                            sh "dotnet build --configuration Release"
                         }
                     }
                     post{
@@ -45,7 +45,7 @@ pipeline{
                     steps{
                         sh "echo 'We are building the frontend'"
                         dir("MovieDB/Client"){
-                            sh "dotnet build MovieDB.Client.csproj"
+                            sh "dotnet build --configuration Release"
                         }
                     }
                 }

@@ -19,4 +19,4 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=yourStrongP@ssword
     ports:
-      -"8092:1433"
+      - "8092:1433"

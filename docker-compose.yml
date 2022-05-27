@@ -39,5 +39,14 @@ services:
       - "${SHARED_PORT}:80"
     depends_on:
       - "api"
+  flyway:
+    image: flyway/flyway
+    container_name: "${FLYWAY_CONT_NAME}"
+    command: -url="jdbc:sqlserver://db;trustServerCertificate=true;" -user=sa -password=yourStrongP@ssword -connectRetries=5 migrate
+    volumes:
+      - ./db:/flyway/conf
+      - ./db:/flyway/sql
+    depends_on:
+      - db
 volumes:
   movieData:
